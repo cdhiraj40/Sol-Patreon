@@ -1,0 +1,40 @@
+.footer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: rgb(255, 66, 77);
+}
+
+.footer-section {
+  margin: 25px 0;
+}
+
+.white-text {
+  color: white;
+}
+
+.logo-icon {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  font-size: 17.5px;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.social-media {
+  width: 20%;
+}
+
+@media screen and (max-width: 600px) {
+  .social-media {
+    width: 60%;
+  }
+}
+
