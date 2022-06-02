@@ -11,6 +11,11 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
+}
+
+.white-text {
+  color: white;
 }
 
 @media (prefers-reduced-motion: no-preference) {

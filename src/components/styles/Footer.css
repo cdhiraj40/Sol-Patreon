@@ -9,15 +9,6 @@
   margin: 25px 0;
 }
 
-.white-text {
-  color: white;
-}
-
-.logo-icon {
-  width: 40px !important;
-  height: 40px !important;
-}
-
 .link {
   color: white;
   text-decoration: none;
@@ -28,8 +19,17 @@
   text-decoration: underline;
 }
 
+.links-container {
+  width: 50% !important;
+}
+
 .social-media {
-  width: 20%;
+  max-width: 200px;
+  margin-bottom: 0;
+}
+
+.copyright-container {
+  margin-top: 8px;
 }
 
 @media screen and (max-width: 600px) {

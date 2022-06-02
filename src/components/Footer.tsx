@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Logo from "./Logo";
 import Grid from '@mui/material/Grid';
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import IconButton from '@mui/material/IconButton';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -15,20 +15,15 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-section">
-        <div className="flex-row">
-          <MonetizationOnIcon className="logo-icon white-text" />
-          <div style={{ marginLeft: 10 }}>
-            <h2 className="white-text">Sol-Patreon</h2>
-          </div>
-        </div>
+        <Logo />
       </div>
 
-      <Grid container className="footer-section" direction="row" spacing={4} style={{ width: "50%" }}>
+      <Grid container className="footer-section links-container" direction="row" spacing={4}>
         <Grid item sm={3} xs={6}>
           <Link to="/" className="link">Home</Link>
         </Grid>
         <Grid item sm={3} xs={6}>
-          <Link to="/" className="link">Explore</Link>
+          <Link to="/explore" className="link">Explore</Link>
         </Grid>
         <Grid item sm={3} xs={6}>
           <Link to="/" className="link">About</Link>
@@ -38,7 +33,7 @@ const Footer = () => {
         </Grid>
       </Grid>
 
-      <Grid container className="footer-section" direction="row" style={{ maxWidth: 200, marginBottom: 0 }}>
+      <Grid container className="footer-section social-media" direction="row">
         <Grid item xs={3}>
           <IconButton>
             <InstagramIcon className="white-text" />
@@ -61,7 +56,7 @@ const Footer = () => {
         </Grid>
       </Grid>
 
-      <div className="footer-section" style={{ marginTop: 8 }}>
+      <div className="footer-section copyright-container">
         <p className="white-text">© Copyright 2022 Sol-Patreon</p>
       </div>
       
