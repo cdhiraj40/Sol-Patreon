@@ -36,3 +36,118 @@
     transform: rotate(360deg);
   }
 }
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+.search-bar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  transform: translate(-50%,-50%);
+  background: #6a89cc;
+  width: 70rem;
+  height: 4rem;
+  padding: 0.2rem 0.6rem 0.2rem 0.2rem;  
+  box-sizing: border-box;
+  box-shadow: 1px 1px 0 0 #4a69bd,
+              2px 2px 0 0 #4a69bd,
+              3px 3px 0 0 #4a69bd,
+              4px 4px 0 0 #4a69bd,
+              5px 5px 0 0 #4a69bd,
+              6px 6px 0 0 #4a69bd
+}
+
+.search-bar input {
+  border: 0;
+  outline: none;
+  height: 100%;
+  width: 85%;
+  padding: 0 1rem;
+  font-size: 1rem;
+  font-style: italic;
+  background-color: rgb(235, 231, 231);
+}
+
+.search-bar button {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bolder;
+  font-size: 1.9rem;
+  cursor: pointer;
+  padding: 1rem 3rem;
+  outline: none;
+
+}
+
+.search-bar span{
+  margin-top: 0.5rem;
+  font-size: 1.3rem;
+  font-style: italic;
+  background-color: rgb(235, 231, 231);
+}
+.Searchimg{
+  width: 100%;
+  height: 32rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.Aboutsection img{
+  float: left;
+}
+.Aboutsection{
+  display: flex;
+  
+
+}
+.Aboutsection p{
+  float: right;
+  margin-top: 5rem;
+  margin-right: 2rem;
+  padding: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: rgb(48, 72, 117);
+}
+
+ .About h2 {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-clip: text;
+  -webkit-background-clip: text;
+  background-size: 400% 400%;
+  font-size: 4rem;
+  color: transparent;
+  animation: gradient 2s ease infinite;
+  -webkit-animation: gradient 2s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+    }
+  50% {
+    background-position: 100% 50%;
+    }
+  100% {
+    background-position: 0% 50%;
+    }
+}
+@-webkit-keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+    }
+  50% {
+    background-position: 100% 50%;
+    }
+  100% {
+    background-position: 0% 50%;
+    }
+}
