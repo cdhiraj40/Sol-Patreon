@@ -1,0 +1,233 @@
+:root {
+    --body-bg: white;
+    --body-color: #000;
+    --footer-color: #000;
+    --footer-hover: #e7eef1;
+    --border-color: #ccc;
+    --header-hover-color: #f6f8f9;
+    --link-color: #444;
+    --link-color-hover: #000;
+    --switch-bg: #f6f8f9;
+    --switch-hover-bg: #e6ebed;
+}
+
+.dark {
+    --body-bg: #050e12;
+    --body-color: white;
+    --footer-color: white;
+    --footer-hover: #0d212a;
+    --border-color: #acdaef;
+    --header-hover-color: #061820;
+    --link-color: #a8d6eb;
+    --link-color-hover: white;
+    --switch-bg: #061820;
+    --switch-hover-bg: #10303e;
+}
+
+*,
+::after,
+::before {
+    box-sizing: border-box;
+}
+
+::placeholder {
+    color: var(--link-color);
+}
+
+p {
+    margin: 0 0 0.6rem 0;
+    font-weight: 400;
+}
+
+a,
+[href] {
+    color: var(--link-color);
+    font-weight: 500;
+}
+
+a:hover,
+[href]:hover {
+    color: var(--link-color-hover);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-weight: 500;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.1rem;
+    line-height: 1.5;
+    background: var(--body-bg);
+    color: var(--body-color);
+}
+
+.content {
+    margin: 0 1.5rem;
+    width: auto;
+}
+
+@media (min-width: 640px) {
+    .content {
+        margin: 0 auto;
+        width: 70%;
+    }
+}
+
+header {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    height: 5rem;
+    z-index: 1020;
+    background-color: var(--body-bg);
+    border-bottom: 1px dashed var(--border-color);
+}
+
+header .brand {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 1.5rem;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--body-color);
+}
+
+header .search-content {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+    border-left: 1px dashed var(--border-color);
+    border-right: 1px dashed var(--border-color);
+}
+
+header .search-content .input-control {
+    appearance: none;
+    border: 0;
+    outline: none;
+    height: 100%;
+    width: 130px;
+    padding: 1rem 1.5rem;
+    border: 0;
+    background-color: var(--body-bg);
+    color: var(--body-color);
+    font-size: 1.2rem;
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+header .search-content .input-control:focus {
+    width: 100%;
+}
+
+header .search-content .input-control:focus {
+    background-color: var(--header-hover-color);
+}
+
+header nav {
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    height: 100%;
+    margin-left: auto;
+}
+
+header nav .nav {
+    flex-direction: row;
+    width: 100%;
+}
+
+header nav .nav-link {
+    height: 100%;
+}
+
+header nav .nav-link {
+    display: flex;
+    align-items: center;    
+    padding: 0 1.5rem;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+header .avatar-content {
+    align-items: center;
+    display: flex;
+    padding: 1rem;
+    transition: all 0.2s ease-in-out;
+}
+
+header .switch-content {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.avatar {
+    border-radius: 50%;
+}
+
+.nav {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.switch {
+    height: 3em;
+    width: 3em;
+    appearance: none;
+    border: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    background-color: var(--switch-bg);
+}
+
+.switch:hover {
+    background-color: var(--switch-hover-bg);
+}
+
+.switch span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: inline-flex;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+}
+
+.switch .sun {
+    color: #333;
+    transform: translate(-50%, -50%);
+    opacity: 9;
+}
+
+.switch .moon {
+    color: yellow;
+    transform: translate(-100%, -50%) scale(-1);
+}
+
+.switch.toggle .sun {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+}
+
+.switch.toggle .moon {
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 9;
+}
+
