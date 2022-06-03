@@ -1,9 +1,59 @@
+import React, { ReactNode, useMemo } from "react"
 import "./Navbar.css"
 import light_profile from "./assets/light_profile.png"
 import dark_profile from "./assets/dark_profile.png"
+import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
+import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
+import { WalletModalProvider, WalletMultiButton } from "@solana/wallet-adapter-react-ui";
+import { PhantomWalletAdapter, SlopeWalletAdapter, SolflareWalletAdapter, LedgerWalletAdapter, SolletWalletAdapter, SolletExtensionWalletAdapter } from "@solana/wallet-adapter-wallets";
+import { clusterApiUrl } from "@solana/web3.js";
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 const Navbar = () => {
+    return (
+        <Context>
+            <Content />
+        </Context>
+    );
+};
+
+
+const Context = (
+    {
+        children
+    }: {
+        children: ReactNode
+    }
+) => {
+    // The Wallet network is set to "devnet".
+    const network = WalletAdapterNetwork.Devnet;
+
+    // We can also provide a custom RPC endpoint.
+    const endpoint = useMemo(() => clusterApiUrl(network), [network]);
+
+    // wallet that are compiled into the application 
+    const wallets = useMemo(
+        () => [
+            new PhantomWalletAdapter(),
+            new SlopeWalletAdapter(),
+            new SolflareWalletAdapter({ network }),
+            new LedgerWalletAdapter(),
+            new SolletWalletAdapter({ network }),
+            new SolletExtensionWalletAdapter({ network }),
+        ],
+        [network]
+    );
+
+    return (
+        <ConnectionProvider endpoint={endpoint}>
+            <WalletProvider wallets={wallets} autoConnect>
+                <WalletModalProvider>{children}</WalletModalProvider>
+            </WalletProvider>
+        </ConnectionProvider>
+    );
+};
+
+const Content = () => {
 
     const toggle = document.querySelector('#toggle')
     const body = document.body
@@ -28,7 +78,11 @@ const Navbar = () => {
                         <li className="nav-item"><a className="nav-link" href="#/">Explore</a></li>
                         <li className="nav-item"><a className="nav-link" href="#/">About</a></li>
                     </ul>
-
+                    <div className="hamburger">
+                        <div className="line1"></div>
+                        <div className="line2"></div>
+                        <div className="line3"></div>
+                    </div>
                 </nav>
                 <div className="switch-content">
                     <button className="switch" type="button" id="toggle" onClick={themeChange}>
@@ -44,6 +98,7 @@ const Navbar = () => {
                         </span>
                     </button>
                 </div>
+                <WalletMultiButton/>
             </header>
             <div className="content"></div>
 
