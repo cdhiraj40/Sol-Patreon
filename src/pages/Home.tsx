@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
+import React, { useState } from "react";
+import Footer from "../components/Footer";
 import "./styles/Home.css";
 import About from "../components/About";
 import Data from "../components/mockdata.json";
@@ -21,11 +20,6 @@ const Home: React.FC = () => {
   return (
     <>
       <h1>Home</h1>
-      <Stack spacing={2} direction="row">
-        <Button variant="text">Text</Button>
-        <Button variant="contained">Contained</Button>
-        <Button variant="outlined">Outlined</Button>
-      </Stack>
       <form action="/" method="get">
         <label htmlFor="header-search">
           <span className="visually-hidden">Search users</span>
@@ -56,6 +50,7 @@ const Home: React.FC = () => {
           : ""
       }
       <About/>
+      <Footer />
     </>
   );
 }
