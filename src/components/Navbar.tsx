@@ -1,7 +1,8 @@
 import React, { ReactNode, useMemo } from "react"
-import "./Navbar.css"
-import light_profile from "./assets/light_profile.png"
-import dark_profile from "./assets/dark_profile.png"
+import { Link } from "react-router-dom";
+import "./styles/Navbar.css"
+import light_profile from "../assets/light_profile.png"
+import dark_profile from "../assets/dark_profile.png"
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base";
 import { ConnectionProvider, WalletProvider } from "@solana/wallet-adapter-react";
 import { WalletModalProvider, WalletMultiButton } from "@solana/wallet-adapter-react-ui";
@@ -74,9 +75,9 @@ const Content = () => {
             <header id="header"><a className="brand" href="#">Sol-Patreon</a>
                 <nav>
                     <ul className="nav">
-                        <li className="nav-item"><a className="nav-link" href="#/">Home</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#/">Explore</a></li>
-                        <li className="nav-item"><a className="nav-link" href="#/">About</a></li>
+                        <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/explore">Explore</Link></li>
+                        <li className="nav-item"><Link className="nav-link" to="/">About</Link></li>
                     </ul>
                     <div className="hamburger">
                         <div className="line1"></div>
