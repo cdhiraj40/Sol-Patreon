@@ -19,7 +19,6 @@ const Home: React.FC = () => {
   }
   return (
     <>
-      <h1>Home</h1>
       <form action="/" method="get">
         <label htmlFor="header-search">
           <span className="visually-hidden">Search users</span>
