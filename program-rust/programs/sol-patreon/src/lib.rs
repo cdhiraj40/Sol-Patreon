@@ -72,7 +72,9 @@ pub mod sol_patreon {
 
         Ok(())
     }
+   
 }
+
 
 #[derive(Accounts)]
 pub struct CreateProfile<'info> {
@@ -143,4 +145,7 @@ pub enum ErrorCode {
     URLTooLong,
     #[msg("URL cannot be empty.")]
     URLEmpty,
+    #[msg("Your Account does not has insufficient funds for spend")]
+    InsufficientFundsForTransaction,
+    
 }

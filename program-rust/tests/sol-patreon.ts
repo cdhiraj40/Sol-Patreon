@@ -1,7 +1,9 @@
 import * as anchor from "@project-serum/anchor";
-import { Program } from "@project-serum/anchor";
+import { Program, web3 } from "@project-serum/anchor";
 import { SolPatreon } from "../target/types/sol_patreon";
 import * as assert from "assert";
+import { Connection, LAMPORTS_PER_SOL, PublicKey } from "@solana/web3.js";
+import { send } from "process";
 
 describe("sol-patreon", () => {
   // Configure the client to use the local cluster.
@@ -22,7 +24,7 @@ describe("sol-patreon", () => {
       .signers(
         // Key pairs of signers here...
         [profile]
-        ).rpc();
+      ).rpc();
 
     // After sending the transaction to the blockchain.
     // Fetch the account details of the created LeetDroid account.
