@@ -1,0 +1,21 @@
+.editprofile-card {
+  margin: 2rem 20rem;
+}
+
+@media screen and (max-width: 1200px) {
+  .editprofile-card {
+    margin: 2rem 11rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .editprofile-card {
+    margin: 2rem 5rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .editprofile-card {
+    margin: 2rem 2rem;
+  }
+}
