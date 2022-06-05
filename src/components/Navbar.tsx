@@ -9,6 +9,7 @@ import { WalletModalProvider, WalletMultiButton } from "@solana/wallet-adapter-r
 import { PhantomWalletAdapter, SlopeWalletAdapter, SolflareWalletAdapter, LedgerWalletAdapter, SolletWalletAdapter, SolletExtensionWalletAdapter } from "@solana/wallet-adapter-wallets";
 import { clusterApiUrl } from "@solana/web3.js";
 require("@solana/wallet-adapter-react-ui/styles.css");
+import pic from "./components/images/logo.png"
 
 const Navbar = () => {
     return (
@@ -72,7 +73,7 @@ const Content = () => {
 
     return (
         <div>
-            <header id="header"><a className="brand" href="#">Sol-Patreon</a>
+            <header id="header"><a className="brand" href="#"><img src={pic} alt="" /></a>
                 <nav>
                     <ul className="nav">
                         <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
