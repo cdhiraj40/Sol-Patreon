@@ -231,3 +231,8 @@ header .switch-content {
     opacity: 9;
 }
 
+ /*TODO change color later*/
+header .wallet {
+    background-color: black;
+}
+
