@@ -24,31 +24,35 @@ const Home: React.FC = () => {
           <span className="visually-hidden">Search users</span>
         </label>
         <div>
-        <img className="Searchimg" src="https://buildingoutloud.solana.com/images/finalist-gradient.png" alt="" />
-        <div className="search-bar">
-         
-        <input
-          type="text"
-          id="header-search"
-          placeholder="Search Users"
-          name="s"
-          onChange={(e) => { updateData(e.target.value) }}
-        />
-        <button type="submit" >Go!</button>
+          <img className="Searchimg" src="https://buildingoutloud.solana.com/images/finalist-gradient.png" alt="" />
+          <div className="search-bar">
 
+            <input
+              type="text"
+              id="header-search"
+              placeholder="Search Users"
+              name="s"
+              onChange={(e) => { updateData(e.target.value) }}
+            />
+            <button type="submit" >Go!</button>
+
+          </div>
         </div>
-        </div>
-       
+
       </form>
-      {
-        (search != "") ?
-          (data.map((item) => (
-            <h3>{item.first_name} {item.last_name}</h3>
-          ))
-          )
-          : ""
-      }
-      <About/>
+      <div className="profile_wrapper">
+        <ul className="profile_items">
+          {
+            (search != "") ?
+              (data.map((item) => (
+                <li>{item.first_name} {item.last_name}</li>
+              ))
+              )
+              : ""
+          }
+        </ul>
+      </div>
+      <About />
     </>
   );
 }

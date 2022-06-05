@@ -17,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
+          <Route path="/profile/:walletaddress" element={<Profile />} />
           <Route path="/edit-profile/:walletaddress" element={<EditProfile />} />
         </Routes>
         <Footer/>
