@@ -26,17 +26,17 @@ describe("sol-patreon", () => {
 
         // After sending the transaction to the blockchain.
         // Fetch the account details of the created LeetDroid account.
-        const leetdroidAccount = await program.account.profile.fetch(profile.publicKey);
+        const profileAccount = await program.account.profile.fetch(profile.publicKey);
 
         // Ensure it has the right data.
-        assert.equal(leetdroidAccount.author.toBase58(), program.provider.wallet.publicKey.toBase58());
-        assert.equal(leetdroidAccount.username, 'cdhiraj40');
-        assert.equal(leetdroidAccount.name, 'Dhiraj');
-        assert.equal(leetdroidAccount.description, 'Hey this is Dhiraj');
-        assert.equal(leetdroidAccount.picUrl, 'https://picsum.photos/200');
-        assert.equal(leetdroidAccount.bannerUrl, 'https://picsum.photos/200');
-        assert.equal(leetdroidAccount.personalUrl, 'https://picsum.photos/200');
-        assert.ok(leetdroidAccount.timestamp);
+        assert.equal(profileAccount.author.toBase58(), program.provider.wallet.publicKey.toBase58());
+        assert.equal(profileAccount.username, 'cdhiraj40');
+        assert.equal(profileAccount.name, 'Dhiraj');
+        assert.equal(profileAccount.description, 'Hey this is Dhiraj');
+        assert.equal(profileAccount.picUrl, 'https://picsum.photos/200');
+        assert.equal(profileAccount.bannerUrl, 'https://picsum.photos/200');
+        assert.equal(profileAccount.personalUrl, 'https://picsum.photos/200');
+        assert.ok(profileAccount.timestamp);
     });
 
     const createProfile = async (_author: anchor.web3.PublicKey, _username: string, _name: string, _description: string, _pic_url: string, _banner_url: string, _personal_url: string) => {
