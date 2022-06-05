@@ -8,6 +8,7 @@ import WalletContext from "./WalletContext" ;
 import {useAnchorWallet} from "@solana/wallet-adapter-react";
 import getProvider from "../api/getProvider";
 import Button from "@mui/material/Button";
+import createProfile from "../api/createProfile";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
@@ -55,6 +56,16 @@ const Content = () => {
         }
     }, [wallet]);
 
+    async function onCreateProfile() {
+        if (provider) {
+            await createProfile(provider, 'cdhiraj40', 'Dhiraj', 'Hey this is Dhiraj',
+                'https://picsum.photos/200', 'https://picsum.photos/200', 'https://picsum.photos/200')
+        } else {
+            // wallet not connected
+        }
+    }
+
+
     return (
         <div>
             <header id="header"><a className="brand" href="/#">
@@ -89,7 +100,7 @@ const Content = () => {
                     </button>
                 </div>
                 <WalletMultiButton className="wallet"/>
-                <Button variant="contained" className="create-profile">Create Profile</Button>
+                <Button variant="contained" className="create-profile" onClick={onCreateProfile}>Create Profile</Button>
             </header>
         </div>
     );
