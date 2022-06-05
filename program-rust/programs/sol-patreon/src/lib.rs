@@ -72,7 +72,7 @@ pub mod sol_patreon {
 
         Ok(())
     }
-    
+
     pub fn update_profile(
         ctx: Context<UpdateProfile>,
         username: String,
@@ -136,9 +136,7 @@ pub mod sol_patreon {
         Ok(())
     }
 
-   
 }
-
 
 #[derive(Accounts)]
 pub struct UpdateProfile<'info> {
@@ -188,14 +186,14 @@ const PERSONAL_URL_LENGTH: usize = 80 * 4;
 
 impl Profile {
     const LEN: usize = DISCRIMINATOR_LENGTH
-+ PUBLIC_KEY_LENGTH // Author
-+ TIMESTAMP_LENGTH // Timestamp
-+ STRING_LENGTH_PREFIX + MAX_USERNAME_LENGTH // Username
-+ STRING_LENGTH_PREFIX + MAX_NAME_LENGTH // Name
-+ STRING_LENGTH_PREFIX + MAX_DESCRIPTION_LENGTH // Description
-+ STRING_LENGTH_PREFIX + PIC_URL_LENGTH // Pic URL
-+ STRING_LENGTH_PREFIX + BANNER_URL_LENGTH // Banner URL
-+ STRING_LENGTH_PREFIX + PERSONAL_URL_LENGTH; // Personal URL
+        + PUBLIC_KEY_LENGTH // Author
+        + TIMESTAMP_LENGTH // Timestamp
+        + STRING_LENGTH_PREFIX + MAX_USERNAME_LENGTH // Username
+        + STRING_LENGTH_PREFIX + MAX_NAME_LENGTH // Name
+        + STRING_LENGTH_PREFIX + MAX_DESCRIPTION_LENGTH // Description
+        + STRING_LENGTH_PREFIX + PIC_URL_LENGTH // Pic URL
+        + STRING_LENGTH_PREFIX + BANNER_URL_LENGTH // Banner URL
+        + STRING_LENGTH_PREFIX + PERSONAL_URL_LENGTH; // Personal URL
 }
 
 #[error_code]
@@ -218,5 +216,5 @@ pub enum ErrorCode {
     URLEmpty,
     #[msg("Your Account does not has insufficient funds for spend")]
     InsufficientFundsForTransaction,
-    
+
 }
