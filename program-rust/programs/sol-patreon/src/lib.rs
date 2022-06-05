@@ -74,7 +74,7 @@ pub mod sol_patreon {
     }
     
     pub fn update_profile(
-        ctx: Context<CreateProfile>,
+        ctx: Context<UpdateProfile>,
         username: String,
         name: String,
         description: String,
@@ -132,6 +132,7 @@ pub mod sol_patreon {
         profile.pic_url = pic_url;
         profile.banner_url = banner_url;
         profile.personal_url = personal_url;
+
         Ok(())
     }
 
@@ -142,7 +143,7 @@ pub mod sol_patreon {
 #[derive(Accounts)]
 pub struct UpdateProfile<'info> {
     #[account(mut, has_one = author)]
-    pub post: Account<'info, Profile>,
+    pub profile: Account<'info, Profile>,
     pub author: Signer<'info>,
 }
 
