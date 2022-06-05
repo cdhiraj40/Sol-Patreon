@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Explore from "./pages/Explore";
-import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
 import './App.css';
 import Navbar from './components/Navbar';
