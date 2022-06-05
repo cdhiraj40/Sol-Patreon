@@ -9,6 +9,7 @@ import {useAnchorWallet} from "@solana/wallet-adapter-react";
 import getProvider from "../api/getProvider";
 import Button from "@mui/material/Button";
 import createProfile from "../api/createProfile";
+import {Profile} from "../api/Profile";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
