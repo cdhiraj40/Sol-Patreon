@@ -44,8 +44,6 @@ const Explore: React.FC = () => {
           ))}
         </Grid>
       </div>
-
-      <Footer />
     </div>
   );
 }
