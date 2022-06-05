@@ -72,9 +72,79 @@ pub mod sol_patreon {
 
         Ok(())
     }
+    
+    pub fn update_profile(
+        ctx: Context<CreateProfile>,
+        username: String,
+        name: String,
+        description: String,
+        pic_url: String,
+        banner_url: String,
+        personal_url: String,
+    ) -> Result<()> {
+        let profile: &mut Account<Profile> = &mut ctx.accounts.profile;
+
+        if username.chars().count() < 1 {
+            return Err(error!(ErrorCode::UsernameEmpty));
+        }
+        if username.chars().count() > 15 {
+            return Err(error!(ErrorCode::UsernameTooLong));
+        }
+
+        if name.chars().count() < 1 {
+            return Err(error!(ErrorCode::NameEmpty));
+        }
+        if name.chars().count() > 50 {
+            return Err(error!(ErrorCode::NameTooLong));
+        }
+
+        if description.chars().count() < 1 {
+            return Err(error!(ErrorCode::DescriptionEmpty));
+        }
+        if description.chars().count() > 400 {
+            return Err(error!(ErrorCode::DescriptionTooLong));
+        }
+
+        if pic_url.chars().count() > 80 {
+            return Err(error!(ErrorCode::URLTooLong));
+        }
+        if pic_url.chars().count() < 1 {
+            return Err(error!(ErrorCode::URLEmpty));
+        }
+
+        if banner_url.chars().count() > 80 {
+            return Err(error!(ErrorCode::URLTooLong));
+        }
+        if banner_url.chars().count() < 1 {
+            return Err(error!(ErrorCode::URLEmpty));
+        }
+
+        if personal_url.chars().count() > 80 {
+            return Err(error!(ErrorCode::URLTooLong));
+        }
+        if personal_url.chars().count() < 1 {
+            return Err(error!(ErrorCode::URLEmpty));
+        }
+
+        profile.username = username;
+        profile.name = name;
+        profile.description = description;
+        profile.pic_url = pic_url;
+        profile.banner_url = banner_url;
+        profile.personal_url = personal_url;
+        Ok(())
+    }
+
    
 }
 
+
+#[derive(Accounts)]
+pub struct UpdateProfile<'info> {
+    #[account(mut, has_one = author)]
+    pub post: Account<'info, Profile>,
+    pub author: Signer<'info>,
+}
 
 #[derive(Accounts)]
 pub struct CreateProfile<'info> {
