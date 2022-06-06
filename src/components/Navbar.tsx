@@ -1,4 +1,4 @@
-import React, {useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import {Link} from "react-router-dom";
 import "./styles/Navbar.css"
 import dark_profile from "../assets/dark_profile.png"
@@ -6,9 +6,10 @@ import {WalletMultiButton} from "@solana/wallet-adapter-react-ui";
 import pic from "./images/logo.png"
 import Button from "@mui/material/Button";
 import CreateProfile from "../api/createProfile";
-import {useWorkspace} from "../api/useWorkspace";
 import {useAnchorWallet} from "@solana/wallet-adapter-react";
 import GetProvider from "../api/getProvider";
+import {ProfileModel} from "../api/ProfileModel";
+import {creatorFilter, FetchProfiles} from "../api/fetchProfiles";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
@@ -40,14 +41,42 @@ const Content = () => {
         avatar.src = dark_profile
     }
 
+    const [users, setUsers] = useState<ProfileModel[]>([]);
+    const [load, setLoad] = useState(false);
+
+    async function fetchUsers(pub: any) {
+        // @ts-ignore
+        FetchProfiles([creatorFilter(pub.toBase58())])
+            .then((fetchProfiles: any) => {
+                setUsers(fetchProfiles)
+                console.log(fetchProfiles)
+            })
+            .finally(() => {
+            })
+    }
+
     useEffect(() => {
             // wallet connected
             if (wallet) {
+                const pub = wallet.publicKey
+                console.log(pub)
+
+                if (!load) {
+                    fetchUsers(pub).then(() => console.log(users))
+                    setLoad(true)
+                }
                 // @ts-ignore once connected hide the wallet button
                 document.getElementsByClassName('wallet')[0].style.visibility = 'hidden';
-                // @ts-ignore show the create profile
-                // TODO check if profile exists!
-                document.getElementsByClassName('create-profile')[0].style.visibility = 'visible';
+
+                // profile exists
+                if(users.length >=1){
+                    // TODO add profile icon
+                    // @ts-ignore show the create profile
+                    document.getElementsByClassName('create-profile')[0].style.visibility = 'hidden';
+                }else{
+                    // @ts-ignore show the create profile
+                    document.getElementsByClassName('create-profile')[0].style.visibility = 'visible';
+                }
 
             } else {
                 // @ts-ignore once connected hide the wallet button
