@@ -1,8 +1,12 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Button from "@mui/material/Button";
 import "./styles/EditProfile.css";
+import CreateProfile from "../api/createProfile";
+import {useAnchorWallet} from "@solana/wallet-adapter-react";
+import GetProvider from "../api/getProvider";
+import {PublicKey} from "@solana/web3.js";
 
 const EditProfile = () => {
     const [username, setUsername] = useState<string>("");
@@ -11,15 +15,44 @@ const EditProfile = () => {
     const [profilePictureURL, setProfilePictureURL] = useState<string>("");
     const [bannerURL, setBannerURL] = useState<string>("");
     const [websiteURL, setWebsiteURL] = useState<string>("");
+    const [newProfilePub, setNewProfilePub] = useState<PublicKey>();
+
+    const wallet = useAnchorWallet()
+    const provider = GetProvider(wallet)
 
     const validation = () => {
-        return (!username || !name || !description);
+        return (!username || !name || !description || !profilePictureURL || !bannerURL || !websiteURL);
+    }
+
+    useEffect(() => {
+            // transaction completed
+            if (newProfilePub) {
+                window.location.href = `http://localhost:3001/profile/${newProfilePub}`;
+            }
+        },
+        [newProfilePub]
+    );
+
+    async function onCreateProfile() {
+        if (provider) {
+
+            const profilePub = await CreateProfile(provider, username, name, description,
+                profilePictureURL, bannerURL, websiteURL)
+
+            if (profilePub) {
+                setNewProfilePub(profilePub)
+            }
+
+        } else {
+            console.log("ASd")
+            // wallet not connected
+        }
     }
 
     return (
         <>
             <div className="card editprofile-card">
-                <h2>Your ProfileModel</h2>
+                <h2>Create your profile</h2>
                 <br/>
                 <Grid container spacing={6}>
                     <Grid item sm={6} xs={12}>
@@ -52,7 +85,7 @@ const EditProfile = () => {
                     <Grid item sm={6} xs={12}>
                         <TextField
                             id="filled-basic"
-                            label="ProfileModel picture URL"
+                            label="Profile picture URL*"
                             variant="filled"
                             value={profilePictureURL}
                             onChange={(e) => setProfilePictureURL(e.target.value)}
@@ -61,7 +94,7 @@ const EditProfile = () => {
                     <Grid item sm={6} xs={12}>
                         <TextField
                             id="filled-basic"
-                            label="Banner URL"
+                            label="Banner URL*"
                             variant="filled"
                             value={bannerURL}
                             onChange={(e) => setBannerURL(e.target.value)}
@@ -70,7 +103,7 @@ const EditProfile = () => {
                     <Grid item sm={6} xs={12}>
                         <TextField
                             id="filled-basic"
-                            label="Website URL"
+                            label="Personal URL*"
                             variant="filled"
                             value={websiteURL}
                             onChange={(e) => setWebsiteURL(e.target.value)}
@@ -79,7 +112,8 @@ const EditProfile = () => {
                 </Grid>
                 <br/>
                 <br/>
-                <Button variant="contained" color="error" disabled={validation()}>Submit</Button>
+                <Button variant="contained" color="error" disabled={validation()}
+                        onClick={onCreateProfile}>Submit</Button>
                 <br/>
             </div>
         </>

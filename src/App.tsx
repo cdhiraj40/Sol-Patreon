@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import {InitWorkspace} from "./api/useWorkspace";
 import WalletContext from "./components/WalletContext";
+import CreateProfile from "./pages/CreateProfile";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
                     <Route path="/explore" element={<Explore/>}/>
                     <Route path="/profile/:walletaddress" element={<Profile/>}/>
                     <Route path="/edit-profile/:walletaddress" element={<EditProfile/>}/>
+                    <Route path="/create-profile/:walletaddress" element={<CreateProfile/>}/>
                 </Routes>
                 <Footer/>
             </BrowserRouter>

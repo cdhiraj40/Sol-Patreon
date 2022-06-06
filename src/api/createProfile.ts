@@ -30,7 +30,7 @@ async function CreateProfile(provider: anchor.Provider, username: string, name: 
         console.log("account:", profileAccount);
 
         // return the tsx ID
-        return tsx;
+        return profile.publicKey;
     } else {
         return null;
     }

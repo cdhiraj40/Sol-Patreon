@@ -5,9 +5,7 @@ import dark_profile from "../assets/dark_profile.png"
 import {WalletMultiButton} from "@solana/wallet-adapter-react-ui";
 import pic from "./images/logo.png"
 import Button from "@mui/material/Button";
-import CreateProfile from "../api/createProfile";
 import {useAnchorWallet} from "@solana/wallet-adapter-react";
-import GetProvider from "../api/getProvider";
 import {ProfileModel} from "../api/ProfileModel";
 import {creatorFilter, FetchProfiles} from "../api/fetchProfiles";
 
@@ -15,9 +13,7 @@ require("@solana/wallet-adapter-react-ui/styles.css");
 
 const Navbar = () => {
     return (
-        // <WalletContext>
         <Content/>
-        // </WalletContext>
     );
 };
 
@@ -28,7 +24,6 @@ const Content = () => {
     const body = document.body
 
     const wallet = useAnchorWallet()
-    const provider = GetProvider(wallet)
 
     const themeChange = () => {
         body.classList.toggle('dark')
@@ -69,11 +64,11 @@ const Content = () => {
                 document.getElementsByClassName('wallet')[0].style.visibility = 'hidden';
 
                 // profile exists
-                if(users.length >=1){
+                if (users.length >= 1) {
                     // TODO add profile icon
                     // @ts-ignore show the create profile
                     document.getElementsByClassName('create-profile')[0].style.visibility = 'hidden';
-                }else{
+                } else {
                     // @ts-ignore show the create profile
                     document.getElementsByClassName('create-profile')[0].style.visibility = 'visible';
                 }
@@ -84,18 +79,11 @@ const Content = () => {
                 // @ts-ignore hide the create profile button if not connected
                 document.getElementsByClassName('create-profile')[0].style.visibility = 'hidden';
             }
-        },
-        [wallet]
-    );
-
-    async function onCreateProfile() {
-        if (provider) {
-            await CreateProfile(provider, 'cdhiraj40', 'Dhiraj', 'Hey this is Dhiraj',
-                'https://picsum.photos/200', 'https://picsum.photos/200', 'https://picsum.photos/200')
-        } else {
-            // wallet not connected
         }
-    }
+        ,
+        [wallet]
+    )
+    ;
 
     return (
         <div>
@@ -131,7 +119,9 @@ const Content = () => {
                     </button>
                 </div>
                 <WalletMultiButton className="wallet"/>
-                <Button variant="contained" className="create-profile" onClick={onCreateProfile}>Create Profile</Button>
+                <Link to={"/create-profile/" + wallet?.publicKey}>
+                    <Button variant="contained" className="create-profile">Create Profile</Button>
+                </Link>
             </header>
         </div>
     );
