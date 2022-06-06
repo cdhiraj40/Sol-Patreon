@@ -24,7 +24,7 @@ const Profile = () => {
     }
 
     if (!load) {
-        fetchUser().then(() => console.log("lol",user?.bannerUrl))
+        fetchUser().then(() => console.log("lol", user?.bannerUrl))
         setLoad(true)
     }
     return (

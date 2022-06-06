@@ -136,7 +136,7 @@ describe("sol-patreon", () => {
             web3.SystemProgram.transfer({
                 fromPubkey: fromKeypair.publicKey,
                 toPubkey: toKeypair,
-                lamports: 1_000_000_00, // 0.1 SOL
+                lamports: 1_000_000_09, // 0.1 SOL
             })
         );
 
