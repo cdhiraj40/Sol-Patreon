@@ -12,7 +12,7 @@ describe("sol-patreon", () => {
     it('can create a new profile', async () => {
         const profile = anchor.web3.Keypair.generate();
 
-        await program.methods.createProfile('cdhiraj40', 'Dhiraj', 'Hey this is Dhiraj', 'https://picsum.photos/200', 'https://picsum.photos/200', 'https://picsum.photos/200')
+        await program.methods.createProfile('mark_zookoberg', 'Mark Zookoberg', 'Hey this is mark, I like to play with privacy :D', 'https://picsum.photos/200', 'https://picsum.photos/200', 'https://picsum.photos/200')
             .accounts({
                 // account share...
                 profile: profile.publicKey,
