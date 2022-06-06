@@ -3,6 +3,7 @@ import "./styles/Home.css";
 import About from "../components/About";
 import {FetchProfiles} from "../api/fetchProfiles";
 import {ProfileModel} from "../api/ProfileModel";
+import {Link} from "react-router-dom";
 
 const Home: React.FC = () => {
     const [data, setData] = useState<ProfileModel[]>([]);
@@ -63,7 +64,9 @@ const Home: React.FC = () => {
                     {
                         (search !== "") ? (data.map(
                                 (user) => (
+                                    <Link className="nav-link" to={"/profile/" + user.publicKey}>
                                     <li>{user.username} {user.name}</li>
+                                    </Link>
                                 )
                             )
                         ) : ""
