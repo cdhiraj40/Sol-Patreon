@@ -1,0 +1,185 @@
+{
+  "version": "0.1.0",
+  "name": "sol_patreon",
+  "instructions": [
+    {
+      "name": "createProfile",
+      "accounts": [
+        {
+          "name": "profile",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "author",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "username",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "picUrl",
+          "type": "string"
+        },
+        {
+          "name": "bannerUrl",
+          "type": "string"
+        },
+        {
+          "name": "personalUrl",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "updateProfile",
+      "accounts": [
+        {
+          "name": "profile",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "author",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "username",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "name": "picUrl",
+          "type": "string"
+        },
+        {
+          "name": "bannerUrl",
+          "type": "string"
+        },
+        {
+          "name": "personalUrl",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Profile",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "author",
+            "type": "publicKey"
+          },
+          {
+            "name": "timestamp",
+            "type": "i64"
+          },
+          {
+            "name": "username",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "picUrl",
+            "type": "string"
+          },
+          {
+            "name": "bannerUrl",
+            "type": "string"
+          },
+          {
+            "name": "personalUrl",
+            "type": "string"
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "UsernameTooLong",
+      "msg": "The provided username should be 50 characters long maximum."
+    },
+    {
+      "code": 6001,
+      "name": "UsernameEmpty",
+      "msg": "Username cannot not be empty."
+    },
+    {
+      "code": 6002,
+      "name": "DescriptionTooLong",
+      "msg": "The provided description should be 300 characters long maximum."
+    },
+    {
+      "code": 6003,
+      "name": "DescriptionEmpty",
+      "msg": "Description cannot be empty."
+    },
+    {
+      "code": 6004,
+      "name": "NameTooLong",
+      "msg": "The provided name should be 50 characters long maximum."
+    },
+    {
+      "code": 6005,
+      "name": "NameEmpty",
+      "msg": "Name cannot be empty."
+    },
+    {
+      "code": 6006,
+      "name": "URLTooLong",
+      "msg": "The provided url should be 200 characters long maximum."
+    },
+    {
+      "code": 6007,
+      "name": "URLEmpty",
+      "msg": "URL cannot be empty."
+    },
+    {
+      "code": 6008,
+      "name": "InsufficientFundsForTransaction",
+      "msg": "Your Account does not has insufficient funds for spend"
+    }
+  ],
+  "metadata": {
+    "address": "571vwvM69EAqbHbbD1CqeKd5DHr9NsLd2LjbrZAoiYyF"
+  }
+}

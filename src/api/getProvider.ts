@@ -1,13 +1,15 @@
 import {Provider} from "@project-serum/anchor";
-import {AnchorWallet} from "@solana/wallet-adapter-react";
+import {AnchorWallet, useAnchorWallet} from "@solana/wallet-adapter-react";
 import {Connection} from "@solana/web3.js";
 import {DEVNET_API, processed} from "../utils/Const";
+import {useWorkspace} from "./useWorkspace";
 
 /**
  *
  * @returns provider to the caller.
  */
-export default function getProvider(wallet: AnchorWallet | undefined) {
+export default function GetProvider(wallet: AnchorWallet| undefined) {
+    // const {wallet} = useWorkspace()
     if (!wallet) {
         return null;
     }

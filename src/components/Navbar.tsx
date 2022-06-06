@@ -1,21 +1,19 @@
-import React, {useEffect} from "react"
+import React, {useEffect, useState} from "react"
 import {Link} from "react-router-dom";
 import "./styles/Navbar.css"
 import dark_profile from "../assets/dark_profile.png"
 import {WalletMultiButton} from "@solana/wallet-adapter-react-ui";
 import pic from "./images/logo.png"
-import WalletContext from "./WalletContext" ;
-import {useAnchorWallet} from "@solana/wallet-adapter-react";
-import getProvider from "../api/getProvider";
 import Button from "@mui/material/Button";
+import {useAnchorWallet} from "@solana/wallet-adapter-react";
+import {ProfileModel} from "../api/ProfileModel";
+import {creatorFilter, FetchProfiles} from "../api/fetchProfiles";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 const Navbar = () => {
     return (
-        <WalletContext>
-            <Content/>
-        </WalletContext>
+        <Content/>
     );
 };
 
@@ -26,7 +24,6 @@ const Content = () => {
     const body = document.body
 
     const wallet = useAnchorWallet()
-    const provider = getProvider(wallet)
 
     const themeChange = () => {
         body.classList.toggle('dark')
@@ -39,21 +36,54 @@ const Content = () => {
         avatar.src = dark_profile
     }
 
+    const [users, setUsers] = useState<ProfileModel[]>([]);
+    const [load, setLoad] = useState(false);
+
+    async function fetchUsers(pub: any) {
+        // @ts-ignore
+        FetchProfiles([creatorFilter(pub.toBase58())])
+            .then((fetchProfiles: any) => {
+                setUsers(fetchProfiles)
+                console.log(fetchProfiles)
+            })
+            .finally(() => {
+            })
+    }
+
     useEffect(() => {
-        // wallet connected
-        if (wallet) {
-            // @ts-ignore once connected hide the wallet button
-            document.getElementsByClassName('wallet')[0].style.visibility = 'hidden';
-            // @ts-ignore show the create profile
-            // TODO check if profile exists!
-            document.getElementsByClassName('create-profile')[0].style.visibility = 'visible';
-        } else {
-            // @ts-ignore once connected hide the wallet button
-            document.getElementsByClassName('wallet')[0].style.visibility = 'visible';
-            // @ts-ignore hide the create profile button if not connected
-            document.getElementsByClassName('create-profile')[0].style.visibility = 'hidden';
+            // wallet connected
+            if (wallet) {
+                const pub = wallet.publicKey
+                console.log(pub)
+
+                if (!load) {
+                    fetchUsers(pub).then(() => console.log(users))
+                    setLoad(true)
+                }
+                // @ts-ignore once connected hide the wallet button
+                document.getElementsByClassName('wallet')[0].style.visibility = 'hidden';
+
+                // profile exists
+                if (users.length >= 1) {
+                    // TODO add profile icon
+                    // @ts-ignore show the create profile
+                    document.getElementsByClassName('create-profile')[0].style.visibility = 'hidden';
+                } else {
+                    // @ts-ignore show the create profile
+                    document.getElementsByClassName('create-profile')[0].style.visibility = 'visible';
+                }
+
+            } else {
+                // @ts-ignore once connected hide the wallet button
+                document.getElementsByClassName('wallet')[0].style.visibility = 'visible';
+                // @ts-ignore hide the create profile button if not connected
+                document.getElementsByClassName('create-profile')[0].style.visibility = 'hidden';
+            }
         }
-    }, [wallet]);
+        ,
+        [wallet]
+    )
+    ;
 
     return (
         <div>
@@ -89,7 +119,9 @@ const Content = () => {
                     </button>
                 </div>
                 <WalletMultiButton className="wallet"/>
-                <Button variant="contained" className="create-profile">Create Profile</Button>
+                <Link to={"/create-profile/" + wallet?.publicKey}>
+                    <Button variant="contained" className="create-profile">Create Profile</Button>
+                </Link>
             </header>
         </div>
     );
