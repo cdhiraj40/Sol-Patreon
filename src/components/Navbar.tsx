@@ -61,7 +61,7 @@ const Content = () => {
 
     async function onCreateProfile() {
         if (provider) {
-            await CreateProfile(provider, 'Rishi', 'lol', 'Hey this is Dhiraj',
+            await CreateProfile(provider, 'cdhiraj40', 'Dhiraj', 'Hey this is Dhiraj',
                 'https://picsum.photos/200', 'https://picsum.photos/200', 'https://picsum.photos/200')
         } else {
             // wallet not connected
