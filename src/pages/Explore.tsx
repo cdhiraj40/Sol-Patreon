@@ -12,7 +12,7 @@ const Explore = (props: any) => {
 
     async function fetchUsers() {
         // @ts-ignore
-        FetchProfiles([creatorFilter("EgG3NfWrYW8vbPePm1D4KbP3j5kQcimrJLHGhLirWbXi")])
+        FetchProfiles()
             .then((fetchProfiles: any) => {
                 setUsers(fetchProfiles)
                 console.log(fetchProfiles)
@@ -29,15 +29,13 @@ const Explore = (props: any) => {
     // @ts-ignore
     return (
         <div>
-            <h1>Explore</h1>
-
             <div>
                 <div className="bg-image-container">
                     <img src="./images/explore page background.jpg" className="bg-image"/>
                 </div>
-                <div className="bg-text">
+                {/* <div className="bg-text">
                     <h1>Search bar</h1>
-                </div>
+                </div> */}
             </div>
 
             <div className="flex-row">
