@@ -1,14 +1,15 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import "./styles/Explore.css";
 import {ProfileModel} from "../api/ProfileModel";
 import {creatorFilter, FetchProfiles} from "../api/fetchProfiles";
 import {Link, useLocation} from "react-router-dom";
+import Loader from "../components/Loader";
 
 const Explore = (props: any) => {
     const [users, setUsers] = useState<ProfileModel[]>([]);
-    const [load, setLoad] = useState(false);
+    const [load, setLoad] = useState(true);
 
     async function fetchUsers() {
         // @ts-ignore
@@ -18,17 +19,18 @@ const Explore = (props: any) => {
                 console.log(fetchProfiles)
             })
             .finally(() => {
+              setLoad(false);
             })
     }
 
-    if (!load) {
-        fetchUsers().then(() => console.log(users))
-        setLoad(true)
-    }
+    useEffect(() => {
+      fetchUsers().then(() => console.log(users))
+    }, []);
 
     // @ts-ignore
     return (
-        <div>
+      <>
+        {load ? <Loader/> : <div>
             <div>
                 <div className="bg-image-container">
                     <img src="./images/explore page background.jpg" className="bg-image"/>
@@ -66,7 +68,8 @@ const Explore = (props: any) => {
                     ))}
                 </Grid>
             </div>
-        </div>
+        </div>}
+      </>
     );
 }
 
