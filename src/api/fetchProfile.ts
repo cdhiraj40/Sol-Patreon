@@ -1,9 +1,8 @@
-import { Profile } from "./Profile";
-import GetProgram from "./getProgram";
-import { Provider } from "@project-serum/anchor";
+import {Profile} from "./Profile";
+import {useWorkspace} from "./useWorkspace";
 
-export const fetchProfiles = async (provider: Provider) => {
-    const program = GetProgram(provider)
+export const FetchProfiles = async () => {
+    const {program} = useWorkspace()
     const profiles = await program.account.profile.all();
     return profiles.map((profile: any) => new Profile(profile.publicKey, profile.account))
 }

@@ -2,8 +2,8 @@ import * as anchor from "@project-serum/anchor";
 import GetProgram from "./getProgram";
 
 
-async function createProfile(provider: anchor.Provider, username: string, name: string, description: string,
-    pic_url: string, banner_url: string, personal_url: string) {
+async function CreateProfile(provider: anchor.Provider, username: string, name: string, description: string,
+                             pic_url: string, banner_url: string, personal_url: string) {
 
     const profile = anchor.web3.Keypair.generate();
     const program = GetProgram(provider)
@@ -36,4 +36,4 @@ async function createProfile(provider: anchor.Provider, username: string, name: 
     }
 }
 
-export default createProfile;
+export default CreateProfile;

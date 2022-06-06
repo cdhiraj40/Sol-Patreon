@@ -1,7 +1,5 @@
-import {useAnchorWallet} from "@solana/wallet-adapter-react";
 import {Program, Provider} from '@project-serum/anchor'
 import idl from '../utils/idl.json'
-import getProvider from "./getProvider";
 
 export default function GetProgram(provider: Provider) {
     

@@ -7,11 +7,15 @@ import EditProfile from './pages/EditProfile';
 import './App.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import {InitWorkspace} from "./api/useWorkspace";
+import WalletContext from "./components/WalletContext";
 
 function App() {
+
+    InitWorkspace()
     return (
         <div className="App">
-
+            <WalletContext>
             <BrowserRouter>
                 <Navbar/>
                 <Routes>
@@ -22,6 +26,7 @@ function App() {
                 </Routes>
                 <Footer/>
             </BrowserRouter>
+            </WalletContext>
         </div>
     );
 }

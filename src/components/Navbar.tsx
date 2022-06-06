@@ -4,20 +4,19 @@ import "./styles/Navbar.css"
 import dark_profile from "../assets/dark_profile.png"
 import {WalletMultiButton} from "@solana/wallet-adapter-react-ui";
 import pic from "./images/logo.png"
-import WalletContext from "./WalletContext";
-import {useAnchorWallet} from "@solana/wallet-adapter-react";
-import getProvider from "../api/getProvider";
 import Button from "@mui/material/Button";
-import createProfile from "../api/createProfile";
-import {fetchProfiles} from "../api/fetchProfile";
+import CreateProfile from "../api/createProfile";
+import {useWorkspace} from "../api/useWorkspace";
+import {useAnchorWallet} from "@solana/wallet-adapter-react";
+import GetProvider from "../api/getProvider";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
 const Navbar = () => {
     return (
-        <WalletContext>
-            <Content/>
-        </WalletContext>
+        // <WalletContext>
+        <Content/>
+        // </WalletContext>
     );
 };
 
@@ -28,7 +27,7 @@ const Content = () => {
     const body = document.body
 
     const wallet = useAnchorWallet()
-    const provider = getProvider(wallet)
+    const provider = GetProvider(wallet)
 
     const themeChange = () => {
         body.classList.toggle('dark')
@@ -50,10 +49,6 @@ const Content = () => {
                 // TODO check if profile exists!
                 document.getElementsByClassName('create-profile')[0].style.visibility = 'visible';
 
-                fetchProfiles(provider!)
-                    .then((fetchProfiles: any) => console.log(fetchProfiles))
-                    .finally(() => {
-                    })
             } else {
                 // @ts-ignore once connected hide the wallet button
                 document.getElementsByClassName('wallet')[0].style.visibility = 'visible';
@@ -61,13 +56,12 @@ const Content = () => {
                 document.getElementsByClassName('create-profile')[0].style.visibility = 'hidden';
             }
         },
-        [provider, wallet]
-    )
-    ;
+        [wallet]
+    );
 
     async function onCreateProfile() {
         if (provider) {
-            await createProfile(provider, 'cdhiraj40', 'Dhiraj', 'Hey this is Dhiraj',
+            await CreateProfile(provider, 'Rishi', 'lol', 'Hey this is Dhiraj',
                 'https://picsum.photos/200', 'https://picsum.photos/200', 'https://picsum.photos/200')
         } else {
             // wallet not connected
