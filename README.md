@@ -9,7 +9,7 @@ The idea came when we were exploring projects particularly ones that gives suppo
 
 ## What it does :
 
-This project "<b>Sol-Patreon/b>" provides builders, creators, and simply people who want to connect with their fans to create a profile to add their pay-based content in their profile section with a sol pay account and the ones who would like to donate would simply do without creating their account contribute to the creator. This makes transactions easy and effective. It lets user to connect with their creator via a simple UI. To donate any creator
+This project "<b>Sol-Patreon</b>" provides builders, creators, and simply people who want to connect with their fans to create a profile to add their pay-based content in their profile section with a sol pay account and the ones who would like to donate would simply do without creating their account contribute to the creator. This makes transactions easy and effective. It lets user to connect with their creator via a simple UI. To donate any creator
 you have to connect to your wallet. The dApp provides more than 5 wallets and once you are connected you can create your profile and add into blockchain under 10 seconds. Yes its that fast!(Read more about Solana from [here](https://solana.com/news/getting-started-with-solana-development). if you still face any issues feel free to create an issue, I would love to help. 
 
 ### Screenshots
@@ -48,8 +48,7 @@ Note: Do check the files that you are adding to the staging area by ``git status
 
 ### Bug / Feature Request
 
-If you find a bug in the dApp/website, kindly open an issue [here]
-(https://github.com/cdhiraj40/Sol-Patreon/issues/new) by
+If you find a bug in the dApp/website, kindly open an issue [here](https://github.com/cdhiraj40/Sol-Patreon/issues/new) by
 including a proper description about the bug and the expected result. Similarly, We would be glad to hear about new features to add in the project, kindly follow same procedure for it too.
 
 ## 🛡️ License
