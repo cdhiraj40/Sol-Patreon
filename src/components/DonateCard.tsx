@@ -31,7 +31,7 @@ const DonateCard = (props: any) => {
     return (
         <div className="subs_card">
             <div className="profile_section_card">
-                <h1>Junior Developer</h1>
+                <h1>{props.name}</h1>
                 <h2>{props.donate} Sol Per Month</h2>
                 <button onClick={
                     onCreateProfile

@@ -40,9 +40,9 @@ const Profile = () => {
             <h2>{user?.name}</h2>
             <p>{user?.description}</p>
             <div className="subs_card_wrapper">
-                <DonateCard donate={"0.1"}/>
-                <DonateCard donate={"0.5"}/>
-                <DonateCard donate={"1"}/>
+                <DonateCard donate={"0.1"} name={"Level 1"}/>
+                <DonateCard donate={"0.5"} name={"Level 2"}/>
+                <DonateCard donate={"1"} name={"Level 3"}/>
             </div>
         </>
     );
