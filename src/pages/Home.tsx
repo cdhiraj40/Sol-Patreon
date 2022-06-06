@@ -1,13 +1,13 @@
 import React, {useState} from "react";
 import "./styles/Home.css";
 import About from "../components/About";
-import {FetchProfiles} from "../api/fetchProfile";
-import {Profile} from "../api/Profile";
+import {FetchProfiles} from "../api/fetchProfiles";
+import {ProfileModel} from "../api/ProfileModel";
 
 const Home: React.FC = () => {
-    const [data, setData] = useState<Profile[]>([]);
+    const [data, setData] = useState<ProfileModel[]>([]);
     const [search, setSearch] = useState("");
-    const [users, setUsers] = useState<Profile[]>([]);
+    const [users, setUsers] = useState<ProfileModel[]>([]);
 
     const updateData = async (query: any) => {
         setSearch(query);

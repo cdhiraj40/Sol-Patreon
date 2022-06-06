@@ -19,7 +19,7 @@ const EditProfile = () => {
   return (
     <>
       <div className="card editprofile-card">
-        <h2>Your Profile</h2>
+        <h2>Your ProfileModel</h2>
         <br />
         <Grid container spacing={6}>
           <Grid item sm={6} xs={12}>
@@ -52,7 +52,7 @@ const EditProfile = () => {
           <Grid item sm={6} xs={12}>
             <TextField
               id="filled-basic"
-              label="Profile picture URL"
+              label="ProfileModel picture URL"
               variant="filled"
               value={profilePictureURL}
               onChange={(e) => setProfilePictureURL(e.target.value)}

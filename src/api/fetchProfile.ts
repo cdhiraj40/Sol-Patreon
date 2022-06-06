@@ -1,8 +1,7 @@
-import {Profile} from "./Profile";
 import {useWorkspace} from "./useWorkspace";
+import {PublicKey} from "@solana/web3.js";
 
-export const FetchProfiles = async () => {
+export const FetchProfile = async (publicKey: PublicKey) => {
     const {program} = useWorkspace()
-    const profiles = await program.account.profile.all();
-    return profiles.map((profile: any) => new Profile(profile.publicKey, profile.account))
+    return await program.account.profile.fetch(publicKey);
 }

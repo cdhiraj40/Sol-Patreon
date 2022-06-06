@@ -2,17 +2,17 @@ import React, {useState} from "react";
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import "./styles/Explore.css";
-import {Profile} from "../api/Profile";
-import {FetchProfiles} from "../api/fetchProfile";
-import {Link} from "react-router-dom";
+import {ProfileModel} from "../api/ProfileModel";
+import {creatorFilter, FetchProfiles} from "../api/fetchProfiles";
+import {Link, useLocation} from "react-router-dom";
 
-const Explore: React.FC = () => {
-    const [users, setUsers] = useState<Profile[]>([]);
+const Explore = (props: any) => {
+    const [users, setUsers] = useState<ProfileModel[]>([]);
     const [load, setLoad] = useState(false);
-    const [count, setCount] = useState(0);
 
     async function fetchUsers() {
-        FetchProfiles()
+        // @ts-ignore
+        FetchProfiles([creatorFilter("EgG3NfWrYW8vbPePm1D4KbP3j5kQcimrJLHGhLirWbXi")])
             .then((fetchProfiles: any) => {
                 setUsers(fetchProfiles)
                 console.log(fetchProfiles)
@@ -26,10 +26,7 @@ const Explore: React.FC = () => {
         setLoad(true)
     }
 
-    const countAmount = () => {
-        setCount(count + 1);
-    };
-
+    // @ts-ignore
     return (
         <div>
             <h1>Explore</h1>

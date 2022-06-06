@@ -1,38 +1,51 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import "./styles/Profile.css";
-
-const Card = () => {
-  return (
-    <div className="subs_card">
-      <div className="profile_section_card">
-        <h1>Junior Developer</h1>
-        <h2>5$ Per Month</h2>
-        <button>Join</button>
-        <p>Thanks for your support</p>
-      </div>
-    </div>
-  )
-}
+import DonateCard from "../components/DonateCard";
+import {FetchProfile} from "../api/fetchProfile";
+import {PublicKey} from "@solana/web3.js";
+import {ProfileModel} from "../api/ProfileModel";
 
 const Profile = () => {
-  return (
-    <>
-      <div className="banner-container">
-        <img src="/images/default banner.png" className="banner" />
-        <div className="profilepic-container">
-          <img src="/images/sample profile pic.jpg" className="profilepic" />
-        </div>
-      </div>
-      <br />
-      <h2>Name</h2>
-      <p>Description</p>
-      <div className="subs_card_wrapper">
-        <Card />
-        <Card />
-        <Card />
-      </div>
-    </>
-  );
+
+    const [user, setUser] = useState<ProfileModel>();
+    const [load, setLoad] = useState(false);
+    const pageUrl = window.location.href
+
+    const publicKey = new PublicKey(pageUrl.substring(pageUrl.length - 44))
+
+    async function fetchUser() {
+        FetchProfile(publicKey)
+            .then((fetchProfile: any) => {
+                setUser(fetchProfile)
+                console.log(fetchProfile)
+            })
+            .finally(() => {
+            })
+    }
+
+    if (!load) {
+        fetchUser().then(() => console.log("lol",user?.bannerUrl))
+        setLoad(true)
+    }
+    return (
+        <>
+            <div className="banner-container">
+                <img src={user?.personalUrl} className="banner"/>
+                <div className="profilepic-container">
+                    <img src={user?.picUrl} className="profilepic"/>
+                </div>
+            </div>
+            <br/>
+            <h2>{user?.username}</h2>
+            <h2>{user?.name}</h2>
+            <p>{user?.description}</p>
+            <div className="subs_card_wrapper">
+                <DonateCard/>
+                <DonateCard/>
+                <DonateCard/>
+            </div>
+        </>
+    );
 }
 
 export default Profile;
