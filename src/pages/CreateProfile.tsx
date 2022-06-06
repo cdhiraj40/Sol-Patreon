@@ -21,7 +21,7 @@ const EditProfile = () => {
     const provider = GetProvider(wallet)
 
     const validation = () => {
-        return (!username || !name || !description || !profilePictureURL || !bannerURL || !websiteURL);
+        return (!username || !name || !description);
     }
 
     useEffect(() => {
@@ -85,7 +85,7 @@ const EditProfile = () => {
                     <Grid item sm={6} xs={12}>
                         <TextField
                             id="filled-basic"
-                            label="Profile picture URL*"
+                            label="Profile picture URL"
                             variant="filled"
                             value={profilePictureURL}
                             onChange={(e) => setProfilePictureURL(e.target.value)}
@@ -94,7 +94,7 @@ const EditProfile = () => {
                     <Grid item sm={6} xs={12}>
                         <TextField
                             id="filled-basic"
-                            label="Banner URL*"
+                            label="Banner URL"
                             variant="filled"
                             value={bannerURL}
                             onChange={(e) => setBannerURL(e.target.value)}
@@ -103,7 +103,7 @@ const EditProfile = () => {
                     <Grid item sm={6} xs={12}>
                         <TextField
                             id="filled-basic"
-                            label="Personal URL*"
+                            label="Personal URL"
                             variant="filled"
                             value={websiteURL}
                             onChange={(e) => setWebsiteURL(e.target.value)}

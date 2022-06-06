@@ -1,43 +1,43 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 import "./styles/Explore.css";
 import {ProfileModel} from "../api/ProfileModel";
 import {creatorFilter, FetchProfiles} from "../api/fetchProfiles";
 import {Link, useLocation} from "react-router-dom";
+import Loader from "../components/Loader";
 
 const Explore = (props: any) => {
     const [users, setUsers] = useState<ProfileModel[]>([]);
-    const [load, setLoad] = useState(false);
+    const [load, setLoad] = useState(true);
 
     async function fetchUsers() {
         // @ts-ignore
-        FetchProfiles([creatorFilter("EgG3NfWrYW8vbPePm1D4KbP3j5kQcimrJLHGhLirWbXi")])
+        FetchProfiles()
             .then((fetchProfiles: any) => {
                 setUsers(fetchProfiles)
                 console.log(fetchProfiles)
             })
             .finally(() => {
+              setLoad(false);
             })
     }
 
-    if (!load) {
-        fetchUsers().then(() => console.log(users))
-        setLoad(true)
-    }
+    useEffect(() => {
+      fetchUsers().then(() => console.log(users))
+    }, []);
 
     // @ts-ignore
     return (
-        <div>
-            <h1>Explore</h1>
-
+      <>
+        {load ? <Loader/> : <div>
             <div>
                 <div className="bg-image-container">
                     <img src="./images/explore page background.jpg" className="bg-image"/>
                 </div>
-                <div className="bg-text">
+                {/* <div className="bg-text">
                     <h1>Search bar</h1>
-                </div>
+                </div> */}
             </div>
 
             <div className="flex-row">
@@ -68,7 +68,8 @@ const Explore = (props: any) => {
                     ))}
                 </Grid>
             </div>
-        </div>
+        </div>}
+      </>
     );
 }
 

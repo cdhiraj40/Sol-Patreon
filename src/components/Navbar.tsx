@@ -3,7 +3,6 @@ import {Link} from "react-router-dom";
 import "./styles/Navbar.css"
 import dark_profile from "../assets/dark_profile.png"
 import {WalletMultiButton} from "@solana/wallet-adapter-react-ui";
-import pic from "./images/logo.png"
 import Button from "@mui/material/Button";
 import {useAnchorWallet} from "@solana/wallet-adapter-react";
 import {ProfileModel} from "../api/ProfileModel";
@@ -38,6 +37,8 @@ const Content = () => {
 
     const [users, setUsers] = useState<ProfileModel[]>([]);
     const [load, setLoad] = useState(false);
+    const [showWalletButton, setshowWalletButton] = useState(false);
+    const [showProfileIcon, setshowProfileIcon] = useState(false);
 
     async function fetchUsers(pub: any) {
         // @ts-ignore
@@ -58,26 +59,30 @@ const Content = () => {
 
                 if (!load) {
                     fetchUsers(pub).then(() => console.log(users))
-                    setLoad(true)
+                    setLoad(true);
                 }
                 // @ts-ignore once connected hide the wallet button
-                document.getElementsByClassName('wallet')[0].style.visibility = 'hidden';
-
+                // document.getElementsByClassName('wallet')[0].style.visibility = 'hidden';
+                setshowWalletButton(false);
                 // profile exists
                 if (users.length >= 1) {
                     // TODO add profile icon
                     // @ts-ignore show the create profile
-                    document.getElementsByClassName('create-profile')[0].style.visibility = 'hidden';
+                    // document.getElementsByClassName('create-profile')[0].style.visibility = 'hidden';
+                    setshowProfileIcon(false);
                 } else {
                     // @ts-ignore show the create profile
-                    document.getElementsByClassName('create-profile')[0].style.visibility = 'visible';
+                    // document.getElementsByClassName('create-profile')[0].style.visibility = 'visible';
+                    setshowProfileIcon(true);
                 }
 
             } else {
                 // @ts-ignore once connected hide the wallet button
-                document.getElementsByClassName('wallet')[0].style.visibility = 'visible';
+                // document.getElementsByClassName('wallet')[0].style.visibility = 'visible';
+                setshowWalletButton(true);
                 // @ts-ignore hide the create profile button if not connected
-                document.getElementsByClassName('create-profile')[0].style.visibility = 'hidden';
+                // document.getElementsByClassName('create-profile')[0].style.visibility = 'hidden';
+                setshowProfileIcon(false);
             }
         }
         ,
@@ -88,7 +93,7 @@ const Content = () => {
     return (
         <div>
             <header id="header"><a className="brand" href="/#">
-                <img src={pic} alt=""/>
+                <img src="/images/logo.png" alt=""/>
             </a>
                 <nav>
                     <ul className="nav">
@@ -118,10 +123,20 @@ const Content = () => {
                         </span>
                     </button>
                 </div>
-                <WalletMultiButton className="wallet"/>
-                <Link to={"/create-profile/" + wallet?.publicKey}>
-                    <Button variant="contained" className="create-profile">Create Profile</Button>
-                </Link>
+                {showWalletButton && <div style={{ marginRight: 10 }}>
+                    <WalletMultiButton className="wallet"/>
+                </div>}
+                {showProfileIcon && <Link to={"/create-profile/" + wallet?.publicKey}>
+                    <div style={{ marginRight: 10 }}>
+                        {users.length >= 1 ? 
+                        <div style={{ borderRadius: "50%" }}>
+                            <img src="/images/sample profile pic.jpg" style={{ width: 50, height: 50 }} />
+                        </div>
+                        : <Button variant="contained" className="create-profile">Create Profile</Button>
+                        }
+                    </div>
+                </Link>}
+                
             </header>
         </div>
     );
