@@ -53,7 +53,7 @@ const Home: React.FC = () => {
                             }
                             }
                         />
-                        <button type="submit">Go!</button>
+                        {/*<button type="submit">Go!</button>*/}
 
                     </div>
                 </div>

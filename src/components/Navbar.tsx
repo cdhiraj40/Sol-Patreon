@@ -128,7 +128,7 @@ const Content = () => {
                 {showWalletButton && <div style={{ marginRight: 10 }}>
                     <WalletMultiButton className="wallet"/>
                 </div>}
-                {showProfileIcon && <Link to={"/create-profile/" + wallet?.publicKey}>
+                {showProfileIcon && <Link to={"/profile/" + users[0]?.publicKey}>
                     <div style={{ marginRight: 10 }}>
                         {users.length >= 1 ? 
                         <div style={{ borderRadius: "50%" }}>
