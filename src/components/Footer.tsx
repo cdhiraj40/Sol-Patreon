@@ -15,7 +15,9 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-section">
-        <Logo />
+          <Logo
+              color = {"white-text"}
+          />
       </div>
 
       <Grid container className="footer-section links-container" direction="row" spacing={4}>

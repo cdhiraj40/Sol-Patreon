@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import {useAnchorWallet} from "@solana/wallet-adapter-react";
 import {ProfileModel} from "../api/ProfileModel";
 import {creatorFilter, FetchProfiles} from "../api/fetchProfiles";
+import Logo from "./Logo";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
@@ -93,7 +94,9 @@ const Content = () => {
     return (
         <div>
             <header id="header"><a className="brand" href="/#">
-                <img src="/images/logo.png" alt=""/>
+                <Logo
+                    color = {"blue-text"}
+                />
             </a>
                 <nav>
                     <ul className="nav">
