@@ -4,6 +4,7 @@ import Button from '@mui/material/Button';
 import "./styles/Explore.css";
 import {Profile} from "../api/Profile";
 import {FetchProfiles} from "../api/fetchProfile";
+import {Link} from "react-router-dom";
 
 const Explore: React.FC = () => {
     const [users, setUsers] = useState<Profile[]>([]);
@@ -60,7 +61,9 @@ const Explore: React.FC = () => {
                                             <h2>{users[i].name}</h2>
                                             <h5>{users[i].username}</h5>
                                         </div>
-                                        <Button variant="contained" color="error">Profile</Button>
+                                        <Link className="nav-link" to={"/profile/" + users[i].publicKey}>
+                                            <Button variant="contained" color="error">Profile</Button>
+                                        </Link>
                                     </Grid>
                                 </Grid>
                             </div>
