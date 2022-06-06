@@ -4,12 +4,12 @@ import "./styles/Navbar.css"
 import dark_profile from "../assets/dark_profile.png"
 import {WalletMultiButton} from "@solana/wallet-adapter-react-ui";
 import pic from "./images/logo.png"
-import WalletContext from "./WalletContext" ;
+import WalletContext from "./WalletContext";
 import {useAnchorWallet} from "@solana/wallet-adapter-react";
 import getProvider from "../api/getProvider";
 import Button from "@mui/material/Button";
 import createProfile from "../api/createProfile";
-import {Profile} from "../api/Profile";
+import {fetchProfiles} from "../api/fetchProfile";
 
 require("@solana/wallet-adapter-react-ui/styles.css");
 
@@ -42,20 +42,28 @@ const Content = () => {
     }
 
     useEffect(() => {
-        // wallet connected
-        if (wallet) {
-            // @ts-ignore once connected hide the wallet button
-            document.getElementsByClassName('wallet')[0].style.visibility = 'hidden';
-            // @ts-ignore show the create profile
-            // TODO check if profile exists!
-            document.getElementsByClassName('create-profile')[0].style.visibility = 'visible';
-        } else {
-            // @ts-ignore once connected hide the wallet button
-            document.getElementsByClassName('wallet')[0].style.visibility = 'visible';
-            // @ts-ignore hide the create profile button if not connected
-            document.getElementsByClassName('create-profile')[0].style.visibility = 'hidden';
-        }
-    }, [wallet]);
+            // wallet connected
+            if (wallet) {
+                // @ts-ignore once connected hide the wallet button
+                document.getElementsByClassName('wallet')[0].style.visibility = 'hidden';
+                // @ts-ignore show the create profile
+                // TODO check if profile exists!
+                document.getElementsByClassName('create-profile')[0].style.visibility = 'visible';
+
+                fetchProfiles(provider!)
+                    .then((fetchProfiles: any) => console.log(fetchProfiles))
+                    .finally(() => {
+                    })
+            } else {
+                // @ts-ignore once connected hide the wallet button
+                document.getElementsByClassName('wallet')[0].style.visibility = 'visible';
+                // @ts-ignore hide the create profile button if not connected
+                document.getElementsByClassName('create-profile')[0].style.visibility = 'hidden';
+            }
+        },
+        [provider, wallet]
+    )
+    ;
 
     async function onCreateProfile() {
         if (provider) {
@@ -65,7 +73,6 @@ const Content = () => {
             // wallet not connected
         }
     }
-
 
     return (
         <div>

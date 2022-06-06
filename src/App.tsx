@@ -7,10 +7,8 @@ import EditProfile from './pages/EditProfile';
 import './App.css';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import {InitWorkspace} from "./api/workspace";
 
 function App() {
-    InitWorkspace()
     return (
         <div className="App">
 
